@@ -21,9 +21,9 @@ public class RangeFilter extends DefaultBlockFilter {
 
   /**A shape that is used to filter input*/
   private Shape queryRange;
-  
+
   public RangeFilter() {}
-  
+
   public RangeFilter(Shape shape) {
     this.queryRange = shape.clone();
   }
@@ -34,7 +34,7 @@ public class RangeFilter extends DefaultBlockFilter {
     if (this.queryRange == null)
       this.queryRange = OperationsParams.getShape(job, QueryRange);
   }
-  
+
   @Override
   public void selectCells(GlobalIndex<Partition> gIndex,
       ResultCollector<Partition> output) {
@@ -65,7 +65,8 @@ public class RangeFilter extends DefaultBlockFilter {
           numPartitions++;
         }
       }
-      RangeQuery.LOG.info("Selected "+numPartitions+" partitions on the perimeter of "+queryMBR);
+      RangeQuery.LOG.info("Selected " + numPartitions + " partitions of "
+    		  + gIndex.size() + " on the perimeter of "+ queryMBR);
     }
   }
 }
